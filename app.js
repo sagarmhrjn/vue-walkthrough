@@ -5,8 +5,19 @@ const app = Vue.createApp({
         // always return object
         return {
             // prop name is upto you; we can pass any data types->array, object, whatever you like
-            courseGoal:'Finish the course and learn vue.',
-            vueLink:'https://vuejs.org'
+            courseGoal: 'Finish the course and learn vue.',
+            vueLink: 'https://vuejs.org'
+        }
+    },
+    // methods will be object full of function
+    methods: {
+        outputGoal() {
+            const randomNumber = Math.random();
+            if (randomNumber < 0.5) {
+                return 'Learn Vue!';
+            } else {
+                return 'Master Vue!';
+            }
         }
     }
 });

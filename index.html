@@ -20,6 +20,8 @@
     <section id="user-goal">
         <h2>My Course Goal</h2>
         <p>{{courseGoal}}</p>
+        <!-- we can use any js expression except if else; accept ternary operator -->
+        <p>{{outputGoal()}}</p>
         <!-- pass in dynamic value in attribute; v-bind:attribute -->
         <p>Learn more about vue <a v-bind:href="vueLink">about Vue</a>.</p>
     </section>
