@@ -14,30 +14,13 @@
 
 <body>
     <header>
-        <h1>Vue Events</h1>
+        <h1>Vue Dynamic Styling</h1>
     </header>
-    <section id="events">
-        <h2>Events in Action</h2>
-        <!-- event binding v-on:event -->
-        <!-- add() and reduce both syntax are allowed -->
-        <!-- @click shorthand for v-on:click -->
-        <button @click="add(5)">Add 5</button>
-        <!-- event modifier only  invoke on right click -->
-        <button @click.right="reduce(5)">Reduce 5</button>
-        <!-- Locking content with v-once -->
-        <p v-once>Starting counter:{{counter}}</p>
-        <p>Result:{{counter}}</p>
-        <!-- 2 way data binding v-model -->
-        <!-- v-bind:value shorthand :value -->
-        <input type="text" v-model="name">
-        <input type="text" v-model="lastName">
-        <button @click="resetInput">Reset Input</button>
-        <p>Your name:{{fullname}}</p>
-        <!-- event modifier; v-on:event.prevent -->
-        <form @submit.prevent="submitForm">
-            <input type="text">
-            <button>Sign Up</button>
-        </form>
+    <section id="styling">
+        <div class="demo" :style="{borderColor:boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div>
+        <div class="demo" @click="boxSelected('B')"></div>
+        <div class="demo" @click="boxSelected('C')"></div>
+
     </section>
 </body>
 
