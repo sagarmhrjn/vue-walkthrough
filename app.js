@@ -7,13 +7,19 @@ const app = Vue.createApp({
             confirmedName: ''
         };
     },
-    methods: {
-        outputFullName() {
+    // we use computed property like variable not a function
+    computed: {
+        fullname() {
             console.log('Running again...')
             if (this.name === '') {
                 return ''
             }
-            return this.name + ' ' + 'Maharjan'
+            return this.name + ' ' + 'Maharjan';
+        }
+    },
+    methods: {
+        outputFullName() {
+
         },
         confirmInput() {
             this.confirmedName = this.name
