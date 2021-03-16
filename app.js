@@ -9,7 +9,7 @@ const app = Vue.createApp({
         return {
             // prop name is upto you; we can pass any data types->array, object, whatever you like
             courseGoalA: 'Finish the course and learn vue.',
-            courseGoalB: 'Master and build amazing vue apps.',
+            courseGoalB: '<h2>Master and build amazing vue apps.</h2>',
             vueLink: 'https://vuejs.org'
         }
     },
