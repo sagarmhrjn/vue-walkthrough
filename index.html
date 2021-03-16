@@ -23,10 +23,10 @@
         <button v-on:click="add(5)">Add 5</button>
         <!-- event modifier only  invoke on right click -->
         <button v-on:click.right="reduce(5)">Reduce 5</button>
+        <!-- Locking content with v-once -->
+        <p v-once>Starting counter:{{counter}}</p>
         <p>Result:{{counter}}</p>
-        <input type="text" 
-        v-on:input="setName($event,'Maharjan')" 
-        v-on:keyup.enter="confirmInput">
+        <input type="text" v-on:input="setName($event,'Maharjan')" v-on:keyup.enter="confirmInput">
         <p>Your name:{{confirmedName}}</p>
         <!-- event modifier; v-on:event.prevent -->
         <form v-on:submit.prevent="submitForm">
