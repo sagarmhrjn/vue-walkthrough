@@ -4,7 +4,7 @@ const app = Vue.createApp({
     data() {
         // always return object
         return {
-            // prop name is upto you
+            // prop name is upto you; we can pass any data types->array, object, whatever you like
             courseGoal:'Finish the course and learn vue.'
         }
     }
