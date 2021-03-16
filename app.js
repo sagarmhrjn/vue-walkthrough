@@ -1,11 +1,15 @@
 // Vue -> global object
 const app = Vue.createApp({
     // configuration of the app; specific property names
+    // takes all data that u return and merge into global vue instance object.
+    // your methods are also available there.
+
     data() {
         // always return object
         return {
             // prop name is upto you; we can pass any data types->array, object, whatever you like
-            courseGoal: 'Finish the course and learn vue.',
+            courseGoalA: 'Finish the course and learn vue.',
+            courseGoalB: 'Master and build amazing vue apps.',
             vueLink: 'https://vuejs.org'
         }
     },
@@ -14,9 +18,9 @@ const app = Vue.createApp({
         outputGoal() {
             const randomNumber = Math.random();
             if (randomNumber < 0.5) {
-                return 'Learn Vue!';
+                return this.courseGoalA;
             } else {
-                return 'Master Vue!';
+                return this.courseGoalB;
             }
         }
     }
