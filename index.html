@@ -20,19 +20,21 @@
         <h2>Events in Action</h2>
         <!-- event binding v-on:event -->
         <!-- add() and reduce both syntax are allowed -->
-        <button v-on:click="add(5)">Add 5</button>
+        <!-- @click shorthand for v-on:click -->
+        <button @click="add(5)">Add 5</button>
         <!-- event modifier only  invoke on right click -->
-        <button v-on:click.right="reduce(5)">Reduce 5</button>
+        <button @click.right="reduce(5)">Reduce 5</button>
         <!-- Locking content with v-once -->
         <p v-once>Starting counter:{{counter}}</p>
         <p>Result:{{counter}}</p>
         <!-- 2 way data binding v-model -->
+        <!-- v-bind:value shorthand :value -->
         <input type="text" v-model="name">
         <input type="text" v-model="lastName">
-        <button v-on:click="resetInput">Reset Input</button>
+        <button @click="resetInput">Reset Input</button>
         <p>Your name:{{fullname}}</p>
         <!-- event modifier; v-on:event.prevent -->
-        <form v-on:submit.prevent="submitForm">
+        <form @submit.prevent="submitForm">
             <input type="text">
             <button>Sign Up</button>
         </form>
