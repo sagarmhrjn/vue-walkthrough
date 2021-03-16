@@ -29,7 +29,7 @@
         <!-- 2 way data binding v-model -->
         <input type="text" v-model="name">
         <button v-on:click="resetInput">Reset Input</button>
-        <p>Your name:{{name}}</p>
+        <p>Your name:{{outputFullName()}}</p>
         <!-- event modifier; v-on:event.prevent -->
         <form v-on:submit.prevent="submitForm">
             <input type="text">
