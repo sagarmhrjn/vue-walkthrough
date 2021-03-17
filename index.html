@@ -24,7 +24,11 @@
         <p v-if="goals.length === 0">No goals have been added yet - please start adding</p>
         <ul v-else>
             <!-- loop through list -->
-            <li v-for="(goal,index) in goals" @click="removeGoal(index)">{{goal}} - {{index}}</li>
+            <!-- to uniquely identify goal bind key attribute -->
+            <li v-for="(goal,index) in goals" :key="goal" @click="removeGoal(index)">
+                <p>{{goal}} - {{index}}</p>
+                <input type="text" @click.stop>
+            </li>
         </ul>
         <!-- <ul>
             <li v-for="(value,key,index) in {name:'Sagar',age:25}">{{key}}: {{value}} - {{index}}</li>
