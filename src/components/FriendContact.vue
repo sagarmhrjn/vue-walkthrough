@@ -12,11 +12,33 @@
     
 <script>
 export default {
-  props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+//   props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  props: {
+    name: {
+      type: String,
+      requried: true,
+    },
+    phoneNumber: {
+      type: String,
+      requried: true,
+    },
+    emailAddress: {
+      type: String,
+      requried: true,
+    },
+    isFavorite: {
+      type: String,
+      requried: true,
+      default: "0",
+      validator: (value) => {
+        return value === "1" || value === "0";
+      },
+    },
+  },
   data() {
     return {
       detailsAreVisible: false,
-      friendIsFavorite:this.isFavorite,
+      friendIsFavorite: this.isFavorite,
       friend: {
         id: "sagar",
         name: "Sagar Maharjan",
