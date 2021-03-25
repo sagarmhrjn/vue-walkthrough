@@ -1,7 +1,8 @@
 <template>
   <li>
-    <h2>{{ name }}</h2>
+    <h2>{{ name }}{{ friendIsFavorite === "1" ? "(Favorite)" : "" }}</h2>
     <button @click="toggleDetails">Show Details</button>
+    <button @click="toggleFavorite">Toggle Favorite</button>
     <ul v-if="detailsAreVisible">
       <li><strong>Phone:</strong>{{ phoneNumber }}</li>
       <li><strong>Email:</strong>{{ emailAddress }}</li>
@@ -11,10 +12,11 @@
     
 <script>
 export default {
-  props: ["name", "phoneNumber", "emailAddress"],
+  props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
   data() {
     return {
       detailsAreVisible: false,
+      friendIsFavorite:this.isFavorite,
       friend: {
         id: "sagar",
         name: "Sagar Maharjan",
@@ -26,6 +28,16 @@ export default {
   methods: {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
+    },
+    /** vue uses a concept unidirectional flow which means
+     data passed from app to friend-contact should be only change to app.
+     */
+    toggleFavorite() {
+      if (this.friendIsFavorite === "1") {
+        this.friendIsFavorite = "0";
+      } else {
+        this.friendIsFavorite = "1";
+      }
     },
   },
 };
