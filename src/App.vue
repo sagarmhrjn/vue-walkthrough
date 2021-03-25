@@ -3,15 +3,11 @@
     <h2>My Friends</h2>
     <ul>
       <friend-contact
-        name="Sagar Maharjan"
-        phone-number="9803690068"
-        email-address="sagarmaharjan31@gmail.com"
-        is-favorite="1"
-      ></friend-contact>
-            <friend-contact
-        name="Raziv Maharjan"
-        phone-number="9841852870"
-        email-address="raziv.maharjan31@gmail.com"
+      :v-for="friend in friends"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-address="friend.email"
+        :is-favorite="true"
       ></friend-contact>
     </ul>
   </section>

@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }}{{ friendIsFavorite === "1" ? "(Favorite)" : "" }}</h2>
+    <h2>{{ name }}{{ friendIsFavorite ? "(Favorite)" : "" }}</h2>
     <button @click="toggleDetails">Show Details</button>
     <button @click="toggleFavorite">Toggle Favorite</button>
     <ul v-if="detailsAreVisible">
@@ -12,7 +12,7 @@
     
 <script>
 export default {
-//   props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  //   props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
   props: {
     name: {
       type: String,
@@ -27,12 +27,9 @@ export default {
       requried: true,
     },
     isFavorite: {
-      type: String,
+      type: Boolean,
       requried: true,
-      default: "0",
-      validator: (value) => {
-        return value === "1" || value === "0";
-      },
+      default: false,
     },
   },
   data() {
@@ -55,11 +52,7 @@ export default {
      data passed from app to friend-contact should be only change to app.
      */
     toggleFavorite() {
-      if (this.friendIsFavorite === "1") {
-        this.friendIsFavorite = "0";
-      } else {
-        this.friendIsFavorite = "1";
-      }
+      this.friendIsFavorite = !this.friendIsFavorite;
     },
   },
 };
