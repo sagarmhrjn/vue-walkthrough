@@ -12,34 +12,45 @@
     
 <script>
 export default {
-  //   props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
-  props: {
-      id: {
-      type: String,
-      requried: true,
-    },
-    name: {
-      type: String,
-      requried: true,
-    },
-    phoneNumber: {
-      type: String,
-      requried: true,
-    },
-    emailAddress: {
-      type: String,
-      requried: true,
-    },
-    isFavorite: {
-      type: Boolean,
-      requried: true,
-      default: false,
-    },
-  },
+  props: ["id","name", "phoneNumber", "emailAddress", "isFavorite"],
+  //   props: {
+  //     id: {
+  //       type: String,
+  //       requried: true,
+  //     },
+  //     name: {
+  //       type: String,
+  //       requried: true,
+  //     },
+  //     phoneNumber: {
+  //       type: String,
+  //       requried: true,
+  //     },
+  //     emailAddress: {
+  //       type: String,
+  //       requried: true,
+  //     },
+  //     isFavorite: {
+  //       type: Boolean,
+  //       requried: true,
+  //       default: false,
+  //     },
+  //   },
+  emits: ["toggle-favorite"],
+  //   emits: {
+  //     "toggle-favorite": (id) => {
+  //         if(id){
+  //             return true
+  //         }else{
+  //             console.warn('Id is missing')
+  //             return false
+  //         }
+  //     },
+  //   },
   data() {
     return {
       detailsAreVisible: false,
-    //   friendIsFavorite: this.isFavorite,
+      //   friendIsFavorite: this.isFavorite,
       friend: {
         id: "sagar",
         name: "Sagar Maharjan",
@@ -56,8 +67,8 @@ export default {
      data passed from app to friend-contact should be only change to app.
      */
     toggleFavorite() {
-    //   this.friendIsFavorite = !this.friendIsFavorite;
-    this.$emit('toggle-favorite', this.id)
+      //   this.friendIsFavorite = !this.friendIsFavorite;
+      this.$emit("toggle-favorite", this.id);
     },
   },
 };
