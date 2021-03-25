@@ -16,21 +16,12 @@
     <header>
         <h1>FriendList</h1>
     </header>
+    <!-- this will do nothing; browser ignores it -->
+    <friend-contact></friend-contact>
     <section id="app">
         <ul>
-            <li v-for="friend in friends" :key="friend.id">
-                <h2>{{friend.name}}</h2>
-                <button @click="toggleDetails(friend.id)">
-                    {{detailsAreVisible ? 'Hide' : 'Show'}} Details</button>
-                <ul v-if="detailsAreVisible">
-                    <li>
-                        <strong>Phone:</strong> {{friend.phone}}
-                    </li>
-                    <li>
-                        <strong>Email:</strong> {{friend.email}}
-                    </li>
-                </ul>
-            </li>
+            <!-- vue control this part and renders it -->
+            <friend-contact></friend-contact>
         </ul>
     </section>
 </body>
