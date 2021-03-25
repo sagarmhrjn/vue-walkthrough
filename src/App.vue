@@ -2,7 +2,11 @@
   <section>
     <h2>My Friends</h2>
     <ul>
-      <friend-contact></friend-contact>
+      <friend-contact
+        name="Sagar Maharjan"
+        phone-number="9803690068"
+        email-address="sagarmaharjan31@gmail.com"
+      ></friend-contact>
     </ul>
   </section>
 </template>
