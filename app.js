@@ -1,105 +1,30 @@
-function getRandomValue(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min
-}
 const app = Vue.createApp({
-
     data() {
         return {
-            playerHealth: 100,
-            monsterHealth: 100,
-            currentRound: 0,
-            winner: null,
-            logMessages: []
-        }
-    },
-    watch: {
-        playerHealth(value) {
-            if (value <= 0 && this.monsterHealth <= 0) {
-                // A draw
-                this.winner = 'draw';
-            } else if (value <= 0) {
-                // Player lost
-                this.winner = 'monster';
-            }
-        },
-        monsterHealth(value) {
-            if (value <= 0 && this.playerrHealth <= 0) {
-                // A draw
-                this.winner = 'draw';
-            } else if (value <= 0) {
-                // Monster lost
-                this.winner = 'player';
-            }
-        }
-    },
-    computed: {
-        monsterBarHealth() {
-            if (this.monsterHealth < 0) {
-                return { width: 0 + '%' }
-            }
-            return { width: this.monsterHealth + '%' }
-        },
-        playerBarHealth() {
-            if (this.playerHealth < 0) {
-                return { width: 0 + '%' }
-            }
-            return { width: this.playerHealth + '%' }
-        },
-        mayUseSpecialAttack() {
-            return this.currentRound % 3 !== 0;
+            detailsAreVisible:false,
+            friends: [
+                {
+                    id: 'sagar',
+                    name: 'Sagar Maharjan',
+                    phone: '01234 5678 991',
+                    email: 'sagar.maharjan'
+                },
+                {
+                    id: 'raziv',
+                    name: 'Raziv Maharjan',
+                    phone: '01234 5678 991',
+                    email: 'raziv.maharjan'
+                }
+            ]
         }
     },
     methods: {
-        startNewGame() {
-            this.playerHealth = 100;
-            this.monsterHealth = 100;
-            this.currentRound = 0;
-            this.winner = null
-        },
-        // max damage 12 min 5
-        attackMonster() {
-            this.currentRound++;
-            const attackValue = getRandomValue(5, 12);
-            this.monsterHealth -= attackValue;
-            this.addLogMessages('player', 'attack', attackValue);
-            this.attackPlayer()
-        },
-        // max damage 12 min 5
-        attackPlayer() {
-            const attackValue = getRandomValue(8, 15);
-            this.playerHealth -= attackValue;
-            this.addLogMessages('monster', 'attack', attackValue);
-        },
-        specialAttackMonster() {
-            this.currentRound++;
-            const attackValue = getRandomValue(8, 15);
-            this.monsterHealth -= attackValue;
-            this.addLogMessages('monster', 'special-attack', attackValue);
-            this.attackPlayer();
-        },
-        healPlayer() {
-            const healValue = getRandomValue(8, 20);
-            if (this.playerHealth + healValue > 100) {
-                this.playerHealth = 100;
-            } else {
-                this.currentRound++;
-                this.playerHealth += healValue;
-            }
-            this.addLogMessages('player', 'heal', healValue);
-            this.attackPlayer();
-        },
-        surrender() {
-            this.winner = 'monster';
-        },
-        addLogMessages(who, what, value) {
-            this.logMessages.unshift({
-                actionBy: who,
-                actionType: what,
-                actionValue: value
-            })
+        toggleDetails() {
+            this.detailsAreVisible = !this.detailsAreVisible
         }
     }
 
+
 });
 
-app.mount('#game');
+app.mount('#app');
