@@ -14,6 +14,7 @@
         :email-address="friend.email"
         :is-favorite="friend.isFavorite"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete-friend="deleteContact"
       ></friend-contact>
     </ul>
   </section>
@@ -37,22 +38,27 @@ export default {
     };
   },
   methods: {
+    //   emitted function
     toggleFavoriteStatus(friendId) {
       const identifiedFriend = this.friends.find(
         (friend) => friend.id === friendId
       );
       identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
     },
+    // submitted events
     addContact(name, phone, email) {
-        const newFriendContact = {
-            id:new Date().toISOString(),
-            name:name,
-            phone:phone,
-            email:email,
-            isFavorite:false
-        }
-
-        this.friends.push(newFriendContact)
+      const newFriendContact = {
+        id: new Date().toISOString(),
+        name: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+      this.friends.push(newFriendContact);
+    },
+    // emited deleted function
+    deleteContact(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id != friendId);
     },
   },
   computed: {},
