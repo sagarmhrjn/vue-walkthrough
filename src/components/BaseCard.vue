@@ -2,7 +2,7 @@
   <div>
       <!-- props are meant to be data which component need; 
       slots are meant to be used for HTML code; a template code that component need-->
-      <header>
+      <header v-if="$slots.header">
       <slot name="header"></slot>
       </header>
       <!-- unnamed slot;default slot -->
