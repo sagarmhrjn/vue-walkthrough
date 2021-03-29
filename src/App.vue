@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import TheHeader from "./components/TheHeader";
+import TheHeader from "./components/layout/TheHeader";
 // import BadgeList from "./components/BadgeList";
 // import UserInfo from "./components/UserInfo";
 // import CourseGoals from "./components/CourseGoals"
