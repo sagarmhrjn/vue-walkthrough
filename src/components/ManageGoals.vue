@@ -1,5 +1,7 @@
 <template>
-  <div>
+<!-- in vue 2 ; you were required to have one root element per template 
+ but in vue 3 you can have many top level element;  so if you dont need wrapping element for semantic or stylig reason
+ there is no reason to keep aroung; this is called fragments-->
     <h2>Manage Goals</h2>
     <input type="text" ref="goal" />
     <button @click="setGoal">Set Goal</button>
@@ -10,7 +12,6 @@
       <button @click="confirmError">Okay</button>
     </error-alert>
     </teleport>
-  </div>
 </template>
 
 <script>
