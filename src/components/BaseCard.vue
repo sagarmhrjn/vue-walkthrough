@@ -2,13 +2,16 @@
   <div>
       <!-- props are meant to be data which component need; 
       slots are meant to be used for HTML code; a template code that component need-->
+      <header>
+      <slot name="header"></slot>
+      </header>
+      <!-- unnamed slot;default slot -->
       <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["content"],
 };
 </script>
 
