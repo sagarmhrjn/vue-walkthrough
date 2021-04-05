@@ -100,7 +100,7 @@
       </div>
     </div>
     <div class="form-contro">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
     </div>
     <div class="form-control">
       <input
@@ -133,6 +133,7 @@ export default {
       how: null,
       confirm: false,
       usernameValidity: "pending",
+      rating: null,
     };
   },
   methods: {
@@ -152,6 +153,8 @@ export default {
       this.how = null;
       console.log(this.confirm);
       this.confirm = false;
+      console.log('Rating',this.rating)
+      this.rating = null
     },
     validateInput() {
       if (this.username === "") {
