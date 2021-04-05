@@ -99,7 +99,10 @@
         <label for="how-other">Other</label>
       </div>
     </div>
-    <div>
+    <div class="form-contro">
+      <rating-control></rating-control>
+    </div>
+    <div class="form-control">
       <input
         type="checkbox"
         id="config-terms"
@@ -107,13 +110,20 @@
         v-model="confirm"
       />
       <label for="config-terms">Agree to terms of use?</label>
+    </div>
+    <div>
       <button>Save Data</button>
     </div>
   </form>
 </template>
 
 <script>
+import RatingControl from "./RatingControl";
+
 export default {
+  components: {
+    RatingControl,
+  },
   data() {
     return {
       username: "",
