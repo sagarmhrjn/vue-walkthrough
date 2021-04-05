@@ -7,7 +7,13 @@
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" />
+      <input
+        id="age"
+        name="age"
+        type="number"
+        v-model.number="userAge"
+        ref="ageInput"
+      />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
@@ -55,18 +61,24 @@
 
 <script>
 export default {
-  data(){
-    return{
-      username:''
-    }
+  data() {
+    return {
+      username: "",
+      userAge: null,
+    };
   },
-  methods:{
-    submitForm(){
-      console.log('Username',this.username);
-      this.username = ''
-    }
-  }
-}
+  methods: {
+    submitForm() {
+      console.log("Username", this.username);
+      this.username = "";
+      console.log("User age:");
+      console.log(this.userAge + 5);
+      // concatenate value from refs value
+      console.log(this.$refs.ageInput.value + 5);
+      this.userAge = null;
+    },
+  },
+};
 </script>
 <style scoped>
 form {
@@ -103,15 +115,15 @@ select {
   width: auto;
 }
 
-input[type='checkbox'],
-input[type='radio'] {
+input[type="checkbox"],
+input[type="radio"] {
   display: inline-block;
   width: auto;
   margin-right: 1rem;
 }
 
-input[type='checkbox'] + label,
-input[type='radio'] + label {
+input[type="checkbox"] + label,
+input[type="radio"] + label {
   font-weight: normal;
 }
 
