@@ -1,9 +1,19 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control">
+    <div
+      class="form-control"
+      :class="{ invalid: usernameValidity === 'invalid' }"
+    >
       <label for="user-name">Your Name</label>
       <!-- two-way binding data v-model-- ng-model -->
-      <input id="user-name" name="user-name" type="text" v-model="username" />
+      <input
+        id="user-name"
+        name="user-name"
+        type="text"
+        v-model.trim="username"
+        @blur="validateInput"
+      />
+      <p v-if="usernameValidity === 'invalid'">Please, enter a valid name!</p>
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
@@ -90,7 +100,12 @@
       </div>
     </div>
     <div>
-      <input type="checkbox" id="config-terms" name="config-terms" v-model="confirm"/>
+      <input
+        type="checkbox"
+        id="config-terms"
+        name="config-terms"
+        v-model="confirm"
+      />
       <label for="config-terms">Agree to terms of use?</label>
       <button>Save Data</button>
     </div>
@@ -107,6 +122,7 @@ export default {
       interest: [],
       how: null,
       confirm: false,
+      usernameValidity: "pending",
     };
   },
   methods: {
@@ -127,6 +143,13 @@ export default {
       console.log(this.confirm);
       this.confirm = false;
     },
+    validateInput() {
+      if (this.username === "") {
+        this.usernameValidity = "invalid";
+      } else {
+        this.usernameValidity = "valid";
+      }
+    },
   },
 };
 </script>
@@ -144,6 +167,13 @@ form {
   margin: 0.5rem 0;
 }
 
+.form-control.invalid input {
+  border-color: red;
+}
+
+.form-control.invalid label {
+  color: red;
+}
 label {
   font-weight: bold;
 }
