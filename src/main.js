@@ -19,7 +19,9 @@ const router = createRouter({
             path: '/users',
             component: UsersListComponent
         }
-    ]
+    ],
+    // if we wanna use router link exact active class
+    linkActiveClass: 'active'
 })
 const app = createApp(App)
 

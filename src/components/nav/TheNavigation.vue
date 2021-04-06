@@ -49,8 +49,10 @@ a {
   display: inline-block;
 }
 
+/* you could use a.router-link-active or a.active class if linkActiveClass is provided */
 a:hover,
-a:active {
+a:active,
+a.active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
