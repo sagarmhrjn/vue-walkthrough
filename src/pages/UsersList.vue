@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import UserItem from "./UserItem.vue";
+import UserItem from "../components/users/UserItem.vue";
 
 export default {
   components: {
@@ -37,14 +37,16 @@ export default {
     console.log(to, from);
     next();
   },
-  beforeRouteLeave(to,from,next){
-    console.log('Users list Before route leave')
-    console.log(to,from)
-    if(this.changesSaved){
-      next()
-    }else{
-      const usersWantsToLeave = confirm('Are you sure? You got unsaved changes.')
-      next(usersWantsToLeave)
+  beforeRouteLeave(to, from, next) {
+    console.log("Users list Before route leave");
+    console.log(to, from);
+    if (this.changesSaved) {
+      next();
+    } else {
+      const usersWantsToLeave = confirm(
+        "Are you sure? You got unsaved changes."
+      );
+      next(usersWantsToLeave);
     }
   },
   // similar to onDestroy on angular
