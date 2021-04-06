@@ -44,7 +44,16 @@ const router = createRouter({
         }
     ],
     // if we wanna use router link exact active class
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    // accept 3 arguments on scrollbehavior i.e to, from ,savedPosition
+    scrollBehavior(to, from, savedPosition) {
+        console.log(to, from, savedPosition)
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { top: 0, left: 0 }
+        }
+    }
 })
 const app = createApp(App)
 
