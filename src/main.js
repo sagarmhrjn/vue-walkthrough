@@ -19,10 +19,12 @@ const router = createRouter({
         },
         // ourdomain.com/teams =>TeamsList
         {
+            name:'teams',
             path: '/teams',
             component: TeamsListComponent,
             children: [
                 {
+                    name:'team-members',
                     path: ':teamId',
                     component: TeamMembersComponent,
                     props: true
