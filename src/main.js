@@ -2,10 +2,12 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 import App from './App.vue';
-import TeamsListComponent from './components/teams/TeamsList.vue'
-import UsersListComponent from './components/users/UsersList.vue'
-import TeamMembersComponent from './components/teams/TeamMembers.vue'
+import TeamsList from './components/teams/TeamsList.vue'
+import UsersList from './components/users/UsersList.vue'
+import TeamMembers from './components/teams/TeamMembers.vue'
 import NotFound from './components/nav/NotFound'
+import TeamsFooter from './components/teams/TeamsFooter.vue'
+import UsersFooter from './components/users/UsersFooter.vue'
 
 const router = createRouter({
     // by calling createWebHistory , it tells that just use the browser built-in mechanism
@@ -19,21 +21,21 @@ const router = createRouter({
         },
         // ourdomain.com/teams =>TeamsList
         {
-            name:'teams',
+            name: 'teams',
             path: '/teams',
-            component: TeamsListComponent,
+            components: { default: TeamsList, footer: TeamsFooter },
             children: [
                 {
-                    name:'team-members',
+                    name: 'team-members',
                     path: ':teamId',
-                    component: TeamMembersComponent,
+                    component: TeamMembers,
                     props: true
                 },
             ]
         },
         {
             path: '/users',
-            component: UsersListComponent
+            components: { default: UsersList, footer: UsersFooter },
         },
 
         {
