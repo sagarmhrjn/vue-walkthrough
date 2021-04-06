@@ -31,6 +31,7 @@ export default {
   // created life-cycle hook
   created() {
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query)
   },
   methods: {
     loadTeamMembers(teamId) {
