@@ -1,80 +1,49 @@
 <template>
-  <section>
-    <base-card>
-      <h2>How was you learning experience?</h2>
-      <form @submit.prevent="submitSurvey">
-        <div class="form-control">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" v-model.trim="enteredName" />
-        </div>
-        <h3>My learning experience was ...</h3>
-        <div class="form-control">
-          <input type="radio" id="rating-poor" value="poor" name="rating" v-model="chosenRating" />
-          <label for="rating-poor">Poor</label>
-        </div>
-        <div class="form-control">
-          <input
-            type="radio"
-            id="rating-average"
-            value="average"
-            name="rating"
-            v-model="chosenRating"
-          />
-          <label for="rating-average">Average</label>
-        </div>
-        <div class="form-control">
-          <input type="radio" id="rating-great" value="great" name="rating" v-model="chosenRating" />
-          <label for="rating-great">Great</label>
-        </div>
-        <p
-          v-if="invalidInput"
-        >One or more input fields are invalid. Please check your provided data.</p>
-        <div>
-          <base-button>Submit</base-button>
-        </div>
-      </form>
-    </base-card>
-  </section>
+  <li>
+    <p>
+      <span class="highlight">{{ name }}</span> rated the learning experience
+      <span :class="ratingClass">{{ rating }}</span>.
+    </p>
+  </li>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      enteredName: '',
-      chosenRating: null,
-      invalidInput: false,
-    };
-  },
-  emits: ['survey-submit'],
-  methods: {
-    submitSurvey() {
-      if (this.enteredName === '' || !this.chosenRating) {
-        this.invalidInput = true;
-        return;
-      }
-      this.invalidInput = false;
-
-      this.$emit('survey-submit', {
-        userName: this.enteredName,
-        rating: this.chosenRating,
-      });
-
-      this.enteredName = '';
-      this.chosenRating = null;
+  props: ['name', 'rating'],
+  computed: {
+    ratingClass() {
+      return 'highlight rating--' + this.rating;
     },
   },
 };
 </script>
 
 <style scoped>
-.form-control {
+li {
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+h3,
+p {
+  font-size: 1rem;
   margin: 0.5rem 0;
 }
 
-input[type='text'] {
-  display: block;
-  width: 20rem;
-  margin-top: 0.5rem;
+.highlight {
+  font-weight: bold;
+}
+
+.rating--poor {
+  color: #b80056;
+}
+
+.rating--average {
+  color: #330075;
+}
+
+.rating--great {
+  color: #008327;
 }
 </style>
