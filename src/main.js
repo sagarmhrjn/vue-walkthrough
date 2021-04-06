@@ -23,6 +23,7 @@ const router = createRouter({
         {
             name: 'teams',
             path: '/teams',
+            meta: { needsAuth: true },
             components: { default: TeamsList, footer: TeamsFooter },
             children: [
                 {
@@ -68,12 +69,18 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     console.log('Global before-each')
     console.log(to, from);
+    if(to.meta.needsAuth){
+        console.log('Need auth!')
+        next()
+    }else{
+        next()
+    }
     // if (to.name === 'team-members') {
     //     next()
     // } else {
     //     next({ name: 'team-members', params: { teamId: 't2' } })
     // }
-    next()
+    // next()
 })
 
 // will only run once after navigation has been confimed.
