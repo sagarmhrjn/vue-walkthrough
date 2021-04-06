@@ -22,7 +22,8 @@ const router = createRouter({
         },
         {
             path: '/teams/:teamId',
-            component: TeamMembersComponent
+            component: TeamMembersComponent,
+            props: true
         }
     ],
     // if we wanna use router link exact active class
