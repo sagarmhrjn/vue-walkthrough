@@ -15,22 +15,25 @@ const router = createRouter({
         // you can use alias too
         {
             path: '/',
-            redirect: '/teams'
+            redirect: '/teams',
         },
         // ourdomain.com/teams =>TeamsList
         {
             path: '/teams',
-            component: TeamsListComponent
+            component: TeamsListComponent,
+            children: [
+                {
+                    path: ':teamId',
+                    component: TeamMembersComponent,
+                    props: true
+                },
+            ]
         },
         {
             path: '/users',
             component: UsersListComponent
         },
-        {
-            path: '/teams/:teamId',
-            component: TeamMembersComponent,
-            props: true
-        },
+
         {
             path: '/:notFound(.*)',
             component: NotFound
