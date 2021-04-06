@@ -76,6 +76,14 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
+// will only run once after navigation has been confimed.
+router.afterEach((to, from) => {
+    // this guard could be useful for sending analytics data
+    console.log('Global afterEach')
+    console.log(to, from)
+})
+
+
 const app = createApp(App)
 
 app.use(router)
