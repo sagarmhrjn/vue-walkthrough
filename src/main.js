@@ -35,7 +35,15 @@ const router = createRouter({
         },
         {
             path: '/users',
-            components: { default: UsersList, footer: UsersFooter },
+            components: {
+                default: UsersList,
+                footer: UsersFooter
+            },
+            beforeEnter(to, from, next) {
+                console.log('users beforeEnter')
+                console.log(to, from)
+                next()
+            }
         },
 
         {
@@ -56,6 +64,7 @@ const router = createRouter({
     }
 });
 
+// this is a global beforeEach guard; runs on every navigation action; no matter which route is being is used. 
 router.beforeEach((to, from, next) => {
     console.log('Global before-each')
     console.log(to, from);

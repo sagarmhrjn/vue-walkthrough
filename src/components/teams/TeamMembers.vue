@@ -51,6 +51,12 @@ export default {
       this.loadTeamMembers(newValue);
     },
   },
+  // load team members based on new team member id params
+  // alternative to watch; it is less flexible because this is only called if compoennt is loaded.
+  // beforeRouteUpdate(to,from,next){
+  //   this.loadTeamMembers(to.params.teamId)
+  //   next()
+  // }
 };
 </script>
 
