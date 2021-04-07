@@ -9,7 +9,15 @@
     [mounted]::leave-from -> leave-active -> to
     -->
     <!-- in case of other css lib;enter-to-class="some-className", enter-active-class="some-className" -->
-    <transition name="para">
+    <transition
+      name="para"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @before-leave="beforeLeave"
+      @after-enter="afterEnter"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
       <p v-if="paraIsVisible">This is only sometimes visible.</p>
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
@@ -59,6 +67,30 @@ export default {
     },
     hideUsers() {
       this.usersAreVisible = false;
+    },
+    beforeEnter(el) {
+      console.log("Before Enter");
+      console.log(el);
+    },
+    enter(el) {
+      console.log("Enter");
+      console.log(el);
+    },
+    beforeLeave(el) {
+      console.log("Before Leave");
+      console.log(el);
+    },
+    afterEnter(el) {
+      console.log("After Enter");
+      console.log(el);
+    },
+    leave(el) {
+      console.log("Leave");
+      console.log(el);
+    },
+    afterLeave(el) {
+      console.log("After Leave");
+      console.log(el);
     },
   },
 };
@@ -114,7 +146,7 @@ button:active {
 }
 .para-enter-active {
   /* transition: all 0.3s ease-out; */
-  animation: slide-scale 0.3s ease-out;
+  animation: slide-scale 2s ease-out;
 }
 .para-enter-to {
   /* opacity: 1;
