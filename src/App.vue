@@ -14,11 +14,18 @@
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
   </div>
+  <div class="container">
+    <!-- transitioning between multiple elements; v-if and v-else -->
+    <transition name="fade-button" mode="out-in">
+      <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
+      <button @click="hideUsers" v-else>Hide Users</button>
+    </transition>
+  </div>
   <!-- transition component wants one direct child.here base-modal is a wrapper element for a modal -->
-    <base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal>
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
+    <p>This is a test dialog!</p>
+    <button @click="hideDialog">Close it!</button>
+  </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -31,6 +38,7 @@ export default {
       animatedBlock: false,
       dialogIsVisible: false,
       paraIsVisible: false,
+      usersAreVisible: false,
     };
   },
   methods: {
@@ -45,6 +53,12 @@ export default {
     },
     toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
+    },
+    showUsers() {
+      this.usersAreVisible = true;
+    },
+    hideUsers() {
+      this.usersAreVisible = false;
     },
   },
 };
@@ -106,8 +120,21 @@ button:active {
   /* opacity: 1;
   transform: translateY(0); */
 }
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+.fade-button-enter-active {
+  transition: 0.3s ease-out;
+}
 
-
+.fade-button-leave-active {
+  transition: 0.3s ease-in;
+}
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
+}
 
 .animate {
   /* move element around x-axis */
@@ -130,5 +157,4 @@ button:active {
     transform: translateX(-150px) scale(1);
   }
 }
-
 </style>
