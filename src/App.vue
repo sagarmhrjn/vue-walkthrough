@@ -3,6 +3,16 @@
     <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
+  <div class="container">
+    <!-- built in component transition; 
+    [unmounted]::enter-from -> enter-active -> to 
+    [mounted]::leave-from -> leave-active -> to
+    -->
+    <transition>
+      <p v-if="paraIsVisible">This is only sometimes visible.</p>
+    </transition>
+    <button @click="toggleParagraph">Toggle paragraph</button>
+  </div>
   <base-modal @close="hideDialog" v-if="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -18,6 +28,7 @@ export default {
     return {
       animatedBlock: false,
       dialogIsVisible: false,
+      paraIsVisible: false,
     };
   },
   methods: {
@@ -29,6 +40,9 @@ export default {
     },
     hideDialog() {
       this.dialogIsVisible = false;
+    },
+    toggleParagraph() {
+      this.paraIsVisible = !this.paraIsVisible;
     },
   },
 };
