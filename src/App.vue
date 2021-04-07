@@ -1,56 +1,17 @@
 <template>
-  <div class="container">
-    <users-list></users-list>
-  </div>
-  <div class="container">
-    <div class="block" :class="{ animate: animatedBlock }"></div>
-    <button @click="animateBlock">Animate</button>
-  </div>
-  <div class="container">
-    <!-- built in component transition; 
-    [unmounted]::enter-from -> enter-active -> to 
-    [mounted]::leave-from -> leave-active -> to
-    -->
-    <!-- in case of other css lib;enter-to-class="some-className", enter-active-class="some-className" -->
-    <!-- you can set css to false to optimize performance -->
-    <transition
-      :css="false"
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @before-leave="beforeLeave"
-      @after-enter="afterEnter"
-      @leave="leave"
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancelled"
-      @leave-cancelled="leaveCancelled"
-    >
-      <p v-if="paraIsVisible">This is only sometimes visible.</p>
-    </transition>
-    <button @click="toggleParagraph">Toggle paragraph</button>
-  </div>
-  <div class="container">
-    <!-- transitioning between multiple elements; v-if and v-else -->
+  <router-view v-slot="slotProps">
     <transition name="fade-button" mode="out-in">
-      <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
-      <button @click="hideUsers" v-else>Hide Users</button>
+      <component :is="slotProps.Component"></component>
     </transition>
-  </div>
-  <!-- transition component wants one direct child.here base-modal is a wrapper element for a modal -->
-  <base-modal @close="hideDialog" :open="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  </router-view>
 </template>  
 
 <script>
-import UsersList from "./components/UsersList";
+// import UsersList from "./components/UsersList";
 
 export default {
-  components:{
-    UsersList
+  components: {
+    // UsersList,
   },
   data() {
     return {
@@ -194,6 +155,19 @@ button:active {
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
+}
+
+.route-enter-from {
+}
+
+.route-enter-active {
+  animation: slide-scale 0.4s ease-out;
+}
+
+.route-enter-to {
+}
+.route-leave-active {
+  animation: slide-scale 0.4s ease-in;
 }
 
 .animate {
