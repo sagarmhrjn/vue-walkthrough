@@ -17,6 +17,8 @@
       @after-enter="afterEnter"
       @leave="leave"
       @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="paraIsVisible">This is only sometimes visible.</p>
     </transition>
@@ -47,6 +49,8 @@ export default {
       dialogIsVisible: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
@@ -71,26 +75,54 @@ export default {
     beforeEnter(el) {
       console.log("Before Enter");
       console.log(el);
+      el.style.opacity = 0;
     },
-    enter(el) {
+    enter(el, done) {
       console.log("Enter");
       console.log(el);
-    },
-    beforeLeave(el) {
-      console.log("Before Leave");
-      console.log(el);
+      let round = 1;
+      // execute every 2 millisecond(20)
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
     },
     afterEnter(el) {
       console.log("After Enter");
       console.log(el);
     },
-    leave(el) {
+    beforeLeave(el) {
+      console.log("Before Leave");
+      console.log(el);
+      el.style.opacity = 1;
+    },
+    leave(el, done) {
       console.log("Leave");
       console.log(el);
+      let round = 1;
+      // execute every 2 millisecond(20)
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log("After Leave");
       console.log(el);
+    },
+    enterCancelled() {
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      clearInterval(this.leaveInterval);
     },
   },
 };
@@ -139,19 +171,6 @@ button:active {
   border-radius: 12px;
 }
 
-/* built-in css classes provided by vue */
-.para-enter-from {
-  /* opacity: 0;
-  transform: translateY(-30px); */
-}
-.para-enter-active {
-  /* transition: all 0.3s ease-out; */
-  animation: slide-scale 2s ease-out;
-}
-.para-enter-to {
-  /* opacity: 1;
-  transform: translateY(0); */
-}
 .fade-button-enter-from,
 .fade-button-leave-to {
   opacity: 0;
