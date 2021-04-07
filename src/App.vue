@@ -90,6 +90,20 @@ button:active {
   border: 2px solid #ccc;
   border-radius: 12px;
 }
+
+/* built-in css classes provided by vue */
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.v-enter-active {
+  transition: all 0.3s ease-out;
+}
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .animate {
   /* move element around x-axis */
   /* transform: translateX(-150px); */
