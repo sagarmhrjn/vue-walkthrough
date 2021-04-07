@@ -9,8 +9,9 @@
     [mounted]::leave-from -> leave-active -> to
     -->
     <!-- in case of other css lib;enter-to-class="some-className", enter-active-class="some-className" -->
+    <!-- you can set css to false to optimize performance -->
     <transition
-      name="para"
+      :css="false"
       @before-enter="beforeEnter"
       @enter="enter"
       @before-leave="beforeLeave"
