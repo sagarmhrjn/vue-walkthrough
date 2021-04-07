@@ -14,10 +14,11 @@
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
+  <!-- transition component wants one direct child.here base-modal is a wrapper element for a modal -->
+    <base-modal @close="hideDialog" :open="dialogIsVisible">
+      <p>This is a test dialog!</p>
+      <button @click="hideDialog">Close it!</button>
+    </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -106,6 +107,8 @@ button:active {
   transform: translateY(0); */
 }
 
+
+
 .animate {
   /* move element around x-axis */
   /* transform: translateX(-150px); */
@@ -127,4 +130,5 @@ button:active {
     transform: translateX(-150px) scale(1);
   }
 }
+
 </style>
