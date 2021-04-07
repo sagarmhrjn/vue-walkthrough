@@ -93,15 +93,16 @@ button:active {
 
 /* built-in css classes provided by vue */
 .v-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
+  /* opacity: 0;
+  transform: translateY(-30px); */
 }
 .v-enter-active {
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out; */
+  animation: slide-scale 0.3s ease-out;
 }
 .v-enter-to {
-  opacity: 1;
-  transform: translateY(0);
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 .animate {
@@ -110,7 +111,7 @@ button:active {
   animation: slide-fade 0.3s ease-out forwards;
 }
 
-@keyframes slide-fade {
+@keyframes slide-scale {
   0% {
     /* scale change the size of the block */
     transform: translateX(0) scale(1);
