@@ -9,6 +9,12 @@ const store = createStore({
         return {
             counter: 0
         }
+    },
+    // clearly defined methods which have the logic to update the state
+    mutations: {
+        increment(state) {
+            state.counter = state.counter + 1
+        }
     }
 })
 
