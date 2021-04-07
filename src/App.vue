@@ -24,7 +24,8 @@ export default {
     addOne() {
       // passing data to mutations as payload
       // this.$store.commit("increase", {value:10});
-      this.$store.commit({
+      // dispatch also takes same argument as mutations action names and payload
+      this.$store.dispatch({
         type: "increase",
         value: 10,
       });

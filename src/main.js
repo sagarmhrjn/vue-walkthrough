@@ -12,12 +12,24 @@ const store = createStore({
     },
     // clearly defined methods which have the logic to update the state
     // same as reducers
+    // mutations only accepts synchronous code
     mutations: {
         increment(state) {
             state.counter = state.counter + 2
         },
         increase(state, payload) {
             state.counter = state.counter + payload.value
+        }
+    },
+    // actions are allowed to make asynchronous 
+    actions: {
+        increment(context) {
+            setTimeout(() => {
+                context.commit('increment')
+            }, 2000)
+        },
+        increase(context, payload) {
+            context.commit('increase', payload)
         }
     },
     // think of them as computed properties for stores.

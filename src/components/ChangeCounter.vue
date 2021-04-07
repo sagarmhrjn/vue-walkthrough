@@ -7,7 +7,7 @@ export default {
     methods:{
         addOne(){
             // commit takes an arg of mutation name
-            this.$store.commit('increment')
+            this.$store.dispatch('increment')
         }
     }
 }
