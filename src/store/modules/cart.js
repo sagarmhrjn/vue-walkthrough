@@ -7,11 +7,12 @@ export default {
             qty: 0
         }
     },
+    // Reducers
     mutations: {
         addProductToCart(state, payload) {
-            const productData = payload.product
+            const productData = payload
             const productInCartIndex = state.items.findIndex(
-                (ci) => ci.productId === productData.id
+                (cartItem) => cartItem.productId === productData.id
             );
 
             if (productInCartIndex >= 0) {
@@ -41,14 +42,19 @@ export default {
             state.total -= prodData.price * prodData.qty;
         },
     },
+    // Actions
     actions: {
         addToCart(context, payload) {
-            context.commit('addProductToCart', payload)
+            const prodId = payload.id
+            const products = context.rootGetters['prods/products']
+            const product = products.find(prod => prod.id === prodId)
+            context.commit('addProductToCart', product) // commit name should be mutation name
         },
         removeFromCart(context, payload) {
             context.commit('removeProductFromCart', payload)
         }
     },
+    // Selectors like a computed properties
     getters: {
         products(state) {
             return state.items
