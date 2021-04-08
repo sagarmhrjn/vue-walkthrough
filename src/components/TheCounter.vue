@@ -10,6 +10,8 @@ export default {
     // return this.$store.state.counter;
     // return this.$store.getters.finalCounter;
     // },
+    // instead of defining computed prop use mapGetters func
+    // mapGetters give you an object full of computed props
     ...mapGetters(["finalCounter"]),
   },
 };

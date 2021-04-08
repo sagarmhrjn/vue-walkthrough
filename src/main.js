@@ -7,7 +7,8 @@ import App from './App.vue';
 const store = createStore({
     state() {
         return {
-            counter: 0
+            counter: 0,
+            isLoggedIn: false
         }
     },
     // clearly defined methods which have the logic to update the state
@@ -19,6 +20,9 @@ const store = createStore({
         },
         increase(state, payload) {
             state.counter = state.counter + payload.value
+        },
+        setAuth(state, payload) {
+            state.isLoggedIn = payload.auth
         }
     },
     // actions are allowed to make asynchronous 
@@ -30,6 +34,12 @@ const store = createStore({
         },
         increase(context, payload) {
             context.commit('increase', payload)
+        },
+        login(context) {
+            context.commit('setAuth', { auth: true })
+        },
+        logout(context) {
+            context.commit('setAuth', { auth: false })
         }
     },
     // think of them as computed properties for stores.
@@ -47,6 +57,9 @@ const store = createStore({
                 return 100
             }
             return finalCounter
+        },
+        userIsAuthenticated(state) {
+            return state.isLoggedIn
         }
     }
 })
