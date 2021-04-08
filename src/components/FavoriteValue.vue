@@ -8,7 +8,7 @@ export default {
   computed: {
     counter() {
       //   return this.$store.state.counter;
-      return this.$store.getters.normalizedCounter; //getters
+      return this.$store.getters["numbers/normalizedCounter"]; //getters
     },
   },
 };

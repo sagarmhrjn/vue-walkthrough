@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 import App from './App.vue';
 
 const counterModule = {
+    namespaced: true,
     state() {
         return {
             counter: 0,
@@ -45,8 +46,8 @@ const counterModule = {
 }
 // start by creating store which return state
 const store = createStore({
-    modules:{
-        numbers:counterModule
+    modules: {
+        numbers: counterModule
     },
     state() {
         return {

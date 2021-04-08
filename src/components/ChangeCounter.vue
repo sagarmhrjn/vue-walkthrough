@@ -15,7 +15,7 @@ export default {
     // map Actions into component.
     // ...mapActions(["increment", "increase"]),
     // if you want to use actions as other key alias
-    ...mapActions({
+    ...mapActions("numbers", {
       inc: "increment",
       increase: "increase",
     }),

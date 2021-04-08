@@ -12,7 +12,7 @@ export default {
     // },
     // instead of defining computed prop use mapGetters func
     // mapGetters give you an object full of computed props
-    ...mapGetters(["finalCounter"]),
+    ...mapGetters("numbers", ["finalCounter"]),
   },
 };
 </script>
